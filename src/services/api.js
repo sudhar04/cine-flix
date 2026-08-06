@@ -303,32 +303,32 @@ const handleRequest = async (apiCall, getFallbackData) => {
 };
 
 export const movieService = {
-  getPopular: (page = 1) => 
+  getPopular: (page = 1) =>
     handleRequest(
       () => api.get('/movie/popular', { params: { page } }),
       () => ({ results: MOCK_MOVIES })
     ),
-  getTopRated: (page = 1) => 
+  getTopRated: (page = 1) =>
     handleRequest(
       () => api.get('/movie/top_rated', { params: { page } }),
       () => ({ results: [...MOCK_MOVIES].sort((a, b) => b.vote_average - a.vote_average) })
     ),
-  getTrending: (timeWindow = 'day') => 
+  getTrending: (timeWindow = 'day') =>
     handleRequest(
       () => api.get(`/trending/movie/${timeWindow}`),
       () => ({ results: MOCK_MOVIES })
     ),
-  getNowPlaying: (page = 1) => 
+  getNowPlaying: (page = 1) =>
     handleRequest(
       () => api.get('/movie/now_playing', { params: { page } }),
       () => ({ results: MOCK_MOVIES })
     ),
-  getUpcoming: (page = 1) => 
+  getUpcoming: (page = 1) =>
     handleRequest(
       () => api.get('/movie/upcoming', { params: { page } }),
       () => ({ results: MOCK_MOVIES })
     ),
-  getDetails: (id) => 
+  getDetails: (id) =>
     handleRequest(
       () => api.get(`/movie/${id}`, { params: { append_to_response: 'videos,credits,recommendations,similar' } }),
       () => {
@@ -351,34 +351,34 @@ export const movieService = {
         };
       }
     ),
-  getGenres: () => 
+  getGenres: () =>
     handleRequest(
       () => api.get('/genre/movie/list'),
       () => ({ genres: MOCK_GENRES })
     ),
-  searchMovies: (query, page = 1) => 
+  searchMovies: (query, page = 1) =>
     handleRequest(
       () => api.get('/search/movie', { params: { query, page } }),
       () => {
-        const filtered = MOCK_MOVIES.filter(m => 
+        const filtered = MOCK_MOVIES.filter(m =>
           m.title.toLowerCase().includes(query.toLowerCase()) ||
           m.overview.toLowerCase().includes(query.toLowerCase())
         );
         return { results: filtered };
       }
     ),
-  discoverMovies: (params) => 
+  discoverMovies: (params) =>
     handleRequest(
       () => api.get('/discover/movie', { params }),
       () => {
         let results = [...MOCK_MOVIES];
-        
+
         // Filter by genre
         if (params.with_genres) {
           const genreId = Number(params.with_genres);
           results = results.filter(m => m.genre_ids.includes(genreId));
         }
-        
+
         // Filter by year
         if (params.year) {
           const year = String(params.year);
@@ -398,7 +398,7 @@ export const movieService = {
             results.sort((a, b) => b.vote_count - a.vote_count);
           }
         }
-        
+
         return { results };
       }
     ),
@@ -411,4 +411,5 @@ export const getImageUrl = (path, size = 'original') => {
 };
 
 export default api;
+
 

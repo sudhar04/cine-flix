@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { movieService, getImageUrl } from '../services/api';
 import { motion } from 'framer-motion';
-import { 
-  Star, 
-  Clock, 
-  Calendar, 
-  Globe, 
-  Play, 
-  Plus, 
-  Check, 
-  Heart, 
-  ArrowLeft, 
-  DollarSign, 
-  TrendingUp, 
-  Building2, 
-  User 
+import {
+  Star,
+  Clock,
+  Calendar,
+  Globe,
+  Play,
+  Plus,
+  Check,
+  Heart,
+  ArrowLeft,
+  DollarSign,
+  TrendingUp,
+  Building2,
+  User
 } from 'lucide-react';
 import { useMovieContext } from '../context/MovieContext';
 import MovieGrid from '../components/MovieGrid';
@@ -131,8 +131,8 @@ const MovieDetailsPage = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent" />
         </div>
 
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="absolute top-24 left-4 md:top-28 md:left-8 p-3 glass rounded-full hover:bg-white/10 transition-all z-20 group"
         >
           <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
@@ -142,7 +142,7 @@ const MovieDetailsPage = () => {
       {/* Content Section */}
       <div className="container mx-auto px-4 md:px-8 -mt-24 sm:-mt-32 lg:-mt-60 relative z-10 pb-20">
         <div className="flex flex-col lg:flex-row gap-12">
-          
+
           {/* Left Column: Poster & Quick Facts */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -157,23 +157,21 @@ const MovieDetailsPage = () => {
                 className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            
+
             {/* Action Buttons (Desktop Only) */}
             <div className="mt-6 hidden lg:flex flex-col gap-3 w-full">
-              <button 
+              <button
                 onClick={() => addToWatchlist(movie)}
-                className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
-                  inWatchlist ? 'bg-white text-black' : 'glass hover:bg-white/10'
-                }`}
+                className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${inWatchlist ? 'bg-white text-black' : 'glass hover:bg-white/10'
+                  }`}
               >
                 {inWatchlist ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 {inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}
               </button>
-              <button 
+              <button
                 onClick={() => toggleFavorite(movie)}
-                className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
-                  inFavorites ? 'bg-primary text-white' : 'glass hover:bg-white/10'
-                }`}
+                className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${inFavorites ? 'bg-primary text-white' : 'glass hover:bg-white/10'
+                  }`}
               >
                 <Heart className={`w-5 h-5 ${inFavorites ? 'fill-current' : ''}`} />
                 {inFavorites ? 'Favorited' : 'Add to Favorites'}
@@ -185,7 +183,7 @@ const MovieDetailsPage = () => {
               <h4 className="text-sm font-bold font-cinematic uppercase tracking-widest text-white/40 pb-2 border-b border-white/5">
                 Facts & Figures
               </h4>
-              
+
               <div>
                 <span className="text-[11px] text-white/40 uppercase tracking-wider block mb-1">Status</span>
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-primary/10 text-primary border border-primary/20 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
@@ -232,8 +230,8 @@ const MovieDetailsPage = () => {
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-4 mb-4">
               {movie.genres?.map(g => (
-                <span 
-                  key={g.id} 
+                <span
+                  key={g.id}
                   className="px-3 py-1 bg-white/5 text-white/80 hover:bg-primary/20 hover:text-primary border border-white/10 hover:border-primary/20 rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-default"
                 >
                   {g.name}
@@ -274,13 +272,13 @@ const MovieDetailsPage = () => {
 
             {/* Actions (Mobile Only) */}
             <div className="lg:hidden flex flex-wrap gap-4 mb-10">
-              <button 
+              <button
                 onClick={() => addToWatchlist(movie)}
                 className="flex-1 btn-primary py-4 rounded-xl text-sm font-bold flex items-center justify-center gap-2"
               >
                 {inWatchlist ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />} Watchlist
               </button>
-              <button 
+              <button
                 onClick={() => toggleFavorite(movie)}
                 className="p-4 glass rounded-xl flex items-center justify-center"
               >
@@ -296,15 +294,15 @@ const MovieDetailsPage = () => {
                 </h3>
                 <div className="flex flex-wrap gap-4">
                   {movie.production_companies.map(company => (
-                    <div 
-                      key={company.id} 
+                    <div
+                      key={company.id}
                       className="flex items-center gap-3 bg-surface/60 border border-white/5 px-4 py-2.5 rounded-xl hover:bg-surface/80 hover:border-white/10 transition-colors"
                     >
                       {company.logo_path ? (
-                        <img 
-                          src={getImageUrl(company.logo_path, 'w92')} 
-                          alt={company.name} 
-                          className="h-6 object-contain filter invert brightness-200" 
+                        <img
+                          src={getImageUrl(company.logo_path, 'w92')}
+                          alt={company.name}
+                          className="h-6 object-contain filter invert brightness-200"
                         />
                       ) : (
                         <Building2 className="w-5 h-5 text-white/60" />
@@ -327,13 +325,13 @@ const MovieDetailsPage = () => {
                 <h3 className="text-xl font-bold mb-6 font-cinematic uppercase tracking-widest text-white/40">
                   Top Cast
                 </h3>
-                 <div className="flex gap-6 overflow-x-auto no-scrollbar pb-4">
+                <div className="flex gap-6 overflow-x-auto no-scrollbar pb-4">
                   {movie.credits.cast.slice(0, 10).map(actor => (
                     <div key={actor.id} className="w-24 shrink-0 group">
                       <div className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-white/5 shadow-lg group-hover:border-primary/50 transition-all duration-300">
                         {actor.profile_path !== null ? (
-                          <img 
-                            src={`https://image.tmdb.org/t/p/w185${actor.profile_path}`} 
+                          <img
+                            src={`https://image.tmdb.org/t/p/w185${actor.profile_path}`}
                             alt={actor.name}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                             onError={(e) => {
@@ -385,9 +383,9 @@ const MovieDetailsPage = () => {
         {/* Similar Movies Grid */}
         {movie.similar?.results && movie.similar.results.length > 0 && (
           <div className="mt-16 border-t border-white/5 pt-8">
-            <MovieGrid 
-              movies={movie.similar.results.slice(0, 6)} 
-              title="Similar Movies" 
+            <MovieGrid
+              movies={movie.similar.results.slice(0, 6)}
+              title="Similar Movies"
             />
           </div>
         )}
@@ -395,9 +393,9 @@ const MovieDetailsPage = () => {
         {/* Recommendations Grid */}
         {movie.recommendations?.results && movie.recommendations.results.length > 0 && (
           <div className="mt-8 border-t border-white/5 pt-8">
-            <MovieGrid 
-              movies={movie.recommendations.results.slice(0, 6)} 
-              title="Recommended For You" 
+            <MovieGrid
+              movies={movie.recommendations.results.slice(0, 6)}
+              title="Recommended For You"
             />
           </div>
         )}
