@@ -2,6 +2,15 @@
 
 CineFlix is a world-class movie discovery platform built with React, Tailwind CSS, and Framer Motion. It offers a sleek, cinematic experience inspired by industry leaders like Netflix and TMDb.
 
+<p align="left">
+  <a href="https://cine-flex-gamma.vercel.app/">
+    <img
+      src="https://img.shields.io/badge/Live%20Demo-View%20Website-2563EB?style=for-the-badge&logo=google-chrome&logoColor=white"
+      alt="Live Demo"
+    />
+  </a>
+</p>
+
 ## Features
 - **Cinematic UI**: Dark mode only with gold and red accents.
 - **Advanced Filtering**: Filter by genres, year, language, and sorting options.
